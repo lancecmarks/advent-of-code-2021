@@ -1,0 +1,7 @@
+forward 8
+forward 1
+forward 2
+forward 6
+down 3
+up 2
+forward 7
