@@ -1,6 +1,6 @@
 Create Virutal Environment
 ```
-python -m venv AoC
+python -m venv venv
 ```
 
 Start Virtual Environment
