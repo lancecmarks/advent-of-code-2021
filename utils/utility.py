@@ -84,7 +84,6 @@ def load_bingo_into_array(filename):
     bingo_numbers = []
     bingo_boards = []
     mask_boards = []
-    bingo_board = []
     temp_array = []
     line_count = 0
     for line in file:
@@ -98,39 +97,39 @@ def load_bingo_into_array(filename):
             line = line.split(',')
             line = list(map(int, line))
             bingo_numbers = np.array(line, dtype="i")
-            # print('Bingo Numbers')
-            # print(bingo_numbers)
         else:
             temp_array.append(line.split())
-            # print(len(temp_array))
-            # print(temp_array)
             line_count += 1
             if line_count == 5:
-                # print('temp_array')
-                # print(temp_array)
                 board = np.array(temp_array, dtype="i")
-                print(board)
-                print(board.shape)
                 board = board.reshape(5, 5)
-                # print(board)
                 bingo_boards.append(board)
                 mask_boards.append(np.zeros(board.shape, dtype="i"))
                 temp_array = []
-    # print("bingo boards: \n")
-    # print(bingo_boards)
     bingo_boards = np.array(bingo_boards)
     mask_boards = np.array(mask_boards)
-    # print(bingo_boards)
-    # print('Bingo Numbers')
-    # print(bingo_numbers)
 
     file.close()
     return bingo_numbers, bingo_boards, mask_boards
 
 
-def create_bingo_board():
-    print('making')
+def mark_bingo_numbers(number, boards, masks):
+    temp_mask = np.isin(boards, number)
+    masks[temp_mask] = 1
+    return masks
 
 
-def test_function():
-    print('HelloWorld')
+def sum_unmarked_numbers(board, mask):
+    temp_mask = np.isin(mask, 0)
+    return np.sum(board[temp_mask])
+
+
+def check_for_win(board):
+    if 5 in np.array(np.sum(board, axis=0)).tolist():
+        return True
+    if 5 in np.array(np.sum(board, axis=1)).tolist():
+        return True
+    if np.trace(board, dtype="i") == 5:
+        return True
+    if np.trace(board, offset=4, dtype="i") == 5:
+        return True
