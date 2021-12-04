@@ -7,38 +7,6 @@ import pathlib
 DATA_FILE_PATH = str(pathlib.Path().resolve()) + '/04/data.txt'
 
 
-def mark_bingo_numbers(number, boards, masks):
-    temp_mask = np.isin(boards, number)
-    masks[temp_mask] = 1
-    print("after marking top 2")
-    print(boards[:2])
-    print(masks[:2])
-    return masks
-
-
-def sum_unmarked_numbers(board, mask):
-    temp_mask = np.isin(mask, 0)
-    return np.sum(board[temp_mask])
-
-
-def check_for_win(board):
-    # check across
-    print('checking board')
-    print(board)
-    print(np.sum(board, axis=0))
-    if 5 in np.array(np.sum(board, axis=0)).tolist():
-        return True
-    print(np.sum(board, axis=1))
-    if 5 in np.array(np.sum(board, axis=1)).tolist():
-        return True
-    print(np.trace(board))
-    if np.trace(board, dtype="i") == 5:
-        return True
-    print(np.trace(board, 4))
-    if np.trace(board, offset=4, dtype="i") == 5:
-        return True
-
-
 def problem1():
     print('problem 1')
     bingo_numbers, bingo_boards, mask_boards = load_bingo_into_array(
@@ -112,7 +80,7 @@ def problem2():
 
 def main():
     problem1()
-    # problem2()
+    problem2()
 
 
 if __name__ == '__main__':
