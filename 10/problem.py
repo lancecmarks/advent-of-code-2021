@@ -7,36 +7,36 @@ DATA_FILE_PATH = str(pathlib.Path().resolve()) + '/10/data.txt'
 
 def problem1():
     print('problem 1')
-    # data = load_file_into_array(DATA_FILE_PATH)
-    # score = 0
-    # for line in data:
-    #     print(line)
-    #     open_stack = []
-    #     for item in line:
-    #         if item in ['{', '(', '<', '[']:
-    #             open_stack.append(item)
-    #         else:
-    #             print(item)
-    #             if item == '}' and open_stack[-1] == '{':
-    #                 open_stack.pop()
-    #             elif item == ')' and open_stack[-1] == '(':
-    #                 open_stack.pop()
-    #             elif item == '>' and open_stack[-1] == '<':
-    #                 open_stack.pop()
-    #             elif item == ']' and open_stack[-1] == '[':
-    #                 open_stack.pop()
-    #             else:
-    #                 print("item {} not found in stack".format(item))
-    #                 if item == ')':
-    #                     score += 3
-    #                 if item == ']':
-    #                     score += 57
-    #                 if item == '}':
-    #                     score += 1197
-    #                 if item == '>':
-    #                     score += 25137
-    #                 break
-    # print("total score is {}".format(score))
+    data = load_file_into_array(DATA_FILE_PATH)
+    score = 0
+    for line in data:
+        print(line)
+        open_stack = []
+        for item in line:
+            if item in ['{', '(', '<', '[']:
+                open_stack.append(item)
+            else:
+                print(item)
+                if item == '}' and open_stack[-1] == '{':
+                    open_stack.pop()
+                elif item == ')' and open_stack[-1] == '(':
+                    open_stack.pop()
+                elif item == '>' and open_stack[-1] == '<':
+                    open_stack.pop()
+                elif item == ']' and open_stack[-1] == '[':
+                    open_stack.pop()
+                else:
+                    print("item {} not found in stack".format(item))
+                    if item == ')':
+                        score += 3
+                    if item == ']':
+                        score += 57
+                    if item == '}':
+                        score += 1197
+                    if item == '>':
+                        score += 25137
+                    break
+    print("total score is {}".format(score))
 
 
 def problem2():
